@@ -9,7 +9,7 @@ resource "azurerm_network_security_rule" "PublicRDP" {
   destination_port_range      = "3389"
   source_address_prefix       = local.allowed_cidr
   destination_address_prefix  = "VirtualNetwork"
-  resource_group_name         = data.terraform_remote_state.network.outputs.resource_group
+  resource_group_name         = data.terraform_remote_state.rg.outputs.resource_group
   network_security_group_name = data.terraform_remote_state.network.outputs.network_security_group_public
 }
 
@@ -18,7 +18,7 @@ resource "azurerm_network_security_rule" "PublicRDP" {
 resource "azurerm_public_ip" "vm01" {
   name                = var.vm01-publicip
   location            = var.location
-  resource_group_name = data.terraform_remote_state.network.outputs.resource_group
+  resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
   allocation_method   = "Static"
 }
 
@@ -27,7 +27,7 @@ resource "azurerm_public_ip" "vm01" {
 resource "azurerm_network_interface" "vm01" {
   name                = var.vm01-network_interface_name
   location            = var.location
-  resource_group_name = data.terraform_remote_state.network.outputs.resource_group
+  resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
   ip_configuration {
     name                          = "testconfiguration1"
     subnet_id                     = data.terraform_remote_state.network.outputs.subnet_public
@@ -41,7 +41,7 @@ resource "azurerm_network_interface" "vm01" {
 resource "azurerm_virtual_machine" "vm01" {
   name                  = var.vm01-vmname
   location              = var.location
-  resource_group_name   = data.terraform_remote_state.network.outputs.resource_group
+  resource_group_name   = data.terraform_remote_state.rg.outputs.resource_group
   network_interface_ids = [azurerm_network_interface.vm01.id]
   vm_size               = "Standard_DS1_v2"
   storage_image_reference {

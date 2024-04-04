@@ -1,16 +1,9 @@
-# resource_group
-
-resource "azurerm_resource_group" "resource_group" {
-  name     = var.resource_group_name
-  location = var.location
-}
-
 # virtual_network
 
 resource "azurerm_virtual_network" "virtualNetwork" {
   name                = var.virtual_network_name
   location            = var.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
   address_space       = var.network_address
 }
 
@@ -18,14 +11,14 @@ resource "azurerm_virtual_network" "virtualNetwork" {
 
 resource "azurerm_subnet" "public" {
   name                 = "Public"
-  resource_group_name  = azurerm_resource_group.resource_group.name
+  resource_group_name  = data.terraform_remote_state.rg.outputs.resource_group
   virtual_network_name = azurerm_virtual_network.virtualNetwork.name
   address_prefixes     = var.public_address
 }
 
 resource "azurerm_subnet" "private" {
   name                 = "Private"
-  resource_group_name  = azurerm_resource_group.resource_group.name
+  resource_group_name  = data.terraform_remote_state.rg.outputs.resource_group
   virtual_network_name = azurerm_virtual_network.virtualNetwork.name
   address_prefixes     = var.private_address
 }
@@ -35,7 +28,7 @@ resource "azurerm_subnet" "private" {
 resource "azurerm_network_security_group" "public" {
   name                = var.public-securitygroup
   location            = var.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
 }
 
 # PublicSubnetとNSGの関連付け
@@ -50,7 +43,7 @@ resource "azurerm_subnet_network_security_group_association" "public" {
 resource "azurerm_network_security_group" "private" {
   name                = var.private-securitygroup
   location            = var.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
 }
 
 # PrivateSubnetとNSGの関連付け

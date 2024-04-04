@@ -3,7 +3,7 @@
 resource "azurerm_network_interface" "vm04" {
   name                = var.vm04-network_interface_name
   location            = var.location
-  resource_group_name = data.terraform_remote_state.network.outputs.resource_group
+  resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
   ip_configuration {
     name                          = "testconfiguration4"
     subnet_id                     = data.terraform_remote_state.network.outputs.subnet_private
@@ -16,7 +16,7 @@ resource "azurerm_network_interface" "vm04" {
 resource "azurerm_virtual_machine" "vm04" {
   name                  = var.vm04-vmname
   location              = var.location
-  resource_group_name   = data.terraform_remote_state.network.outputs.resource_group
+  resource_group_name   = data.terraform_remote_state.rg.outputs.resource_group
   network_interface_ids = [azurerm_network_interface.vm04.id]
   vm_size               = "Standard_B2s"
   storage_image_reference {

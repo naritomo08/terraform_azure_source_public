@@ -62,6 +62,23 @@ ount-name <ストレージアカウント名> --query '[0].value' -o tsv)
 →新しくターミナルを立ち上げるたびに設定すること。
 ```
 
+## 作成（リソースグループ作成）
+
+networkフォルダ内へ入り、リソース作成を実施する。
+
+```bash
+cd ResourceGroup
+
+vi backend.tf
+
+<ストレージ名>を保存ストレージ作成で控えた名前をいれる。
+
+terraform init
+terraform plan
+terraform apply
+cd ..
+```
+
 ## 作成（基本ネットワーク作成）
 
 networkフォルダ内へ入り、リソース作成を実施する。
@@ -133,6 +150,9 @@ admin_password
 ```bash
 terraform destroy
 ```
+
+仮想マシンについては仮想ディスクのみ残るため、
+リソースグループ消す前にこれらもコンソールから消すこと。
 
 ## 一部リソースのみの削除手順
 
