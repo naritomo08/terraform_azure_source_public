@@ -140,7 +140,7 @@ applyコマンド実施後に出てくるIPを控え、
 admin_username
 admin_password
 
-## 作成（bastion作成）5分かかる
+## 作成（bastion作成）8分かかる
 
 bastionフォルダ内へ入り、リソース作成を実施する。
 
