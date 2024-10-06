@@ -22,7 +22,7 @@ tfenv
 *terraform稼働コンテナを利用しない場合は必要
 ```
 
-### (コンテナ利用しない場合)指定バージョン(1.５．７)のterraformを導入する。
+### (コンテナ利用しない場合)指定バージョン(1.５．７)のterraformを導入する
 
 ```bash
 tfenv install
@@ -140,6 +140,23 @@ applyコマンド実施後に出てくるIPを控え、
 admin_username
 admin_password
 
+## 作成（bastion作成）5分かかる
+
+bastionフォルダ内へ入り、リソース作成を実施する。
+
+```bash
+cd bastion
+
+vi backend.tf
+
+<ストレージ名>を保存ストレージ作成で控えた名前をいれる。
+
+terraform init
+terraform plan
+terraform apply
+cd ..
+```
+
 ## 削除方法
 
 作成とは逆の手順で削除する。
@@ -147,6 +164,7 @@ admin_password
 以下のコマンドで削除可能
 
 一度作成できれば最後のコマンドのみでよい。
+
 ```bash
 terraform destroy
 ```
