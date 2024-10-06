@@ -1,3 +1,18 @@
+# azurerm_network_security_rule(public RDP Accept)
+resource "azurerm_network_security_rule" "PrivateSSHInbound" {
+  name                        = "SSH"
+  priority                    = 110
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "22"
+  source_address_prefix       = "VirtualNetwork"
+  destination_address_prefix  = "*"
+  resource_group_name         = data.terraform_remote_state.rg.outputs.resource_group
+  network_security_group_name = data.terraform_remote_state.network.outputs.network_security_group_private
+}
+
 # network_interface(vm04)
 
 resource "azurerm_network_interface" "vm04" {

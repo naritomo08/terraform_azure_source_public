@@ -1,3 +1,17 @@
+resource "azurerm_network_security_rule" "PrivateRDPInbound" {
+  name                        = "RDP"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "3389"
+  source_address_prefix       = "VirtualNetwork"
+  destination_address_prefix  = "*"
+  resource_group_name         = data.terraform_remote_state.rg.outputs.resource_group
+  network_security_group_name = data.terraform_remote_state.network.outputs.network_security_group_private
+}
+
 # network_interface(vm03)
 
 resource "azurerm_network_interface" "vm03" {

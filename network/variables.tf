@@ -21,7 +21,12 @@ variable "public_address" {
 }
 
 variable "private_address" {
-  default     = ["10.0.0.128/25"]
+  default     = ["10.0.0.128/26"]
+  description = ""
+}
+
+variable "bastion_address" {
+  default     = ["10.0.0.192/26"]
   description = ""
 }
 
@@ -37,6 +42,12 @@ variable "private-securitygroup" {
   description = ""
 }
 
+variable "bastion-securitygroup" {
+  type        = string
+  default     = "bastion-securitygroup"
+  description = ""
+}
+
 variable "public_address_nsg" {
   type        = string
   default     = "10.0.0.0/25"
@@ -45,6 +56,12 @@ variable "public_address_nsg" {
 
 variable "private_address_nsg" {
   type        = string
-  default     = "10.0.0.128/25"
+  default     = "10.0.0.128/26"
+  description = ""
+}
+
+variable "bastion_address_nsg" {
+  type        = string
+  default     = "10.0.0.192/26"
   description = ""
 }

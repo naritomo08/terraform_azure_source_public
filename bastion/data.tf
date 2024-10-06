@@ -3,7 +3,7 @@ data "terraform_remote_state" "rg" {
 
   config = {
     resource_group_name  = "tfstate"
-    storage_account_name = "tfstateuqrlr"
+    storage_account_name = "tfstatep9h1p"
     container_name       = "tfstate"
     key                  = "resourcegroup.tfstate"
   }
@@ -14,7 +14,7 @@ data "terraform_remote_state" "network" {
 
   config = {
     resource_group_name  = "tfstate"
-    storage_account_name = "tfstateuqrlr"
+    storage_account_name = "tfstatep9h1p"
     container_name       = "tfstate"
     key                  = "network.tfstate"
   }

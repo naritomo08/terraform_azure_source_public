@@ -12,3 +12,18 @@ output "subnet_private" {
   value       = azurerm_subnet.private.id
   description = ""
 }
+
+output "network_security_group_private" {
+  value       = azurerm_network_security_group.private.name
+  description = ""
+}
+
+output "subnet_bastion" {
+  value       = azurerm_subnet.bastion.id
+  description = ""
+}
+
+output "network_security_group_bastion" {
+  value       = azurerm_network_security_group.bastion.name
+  description = ""
+}
