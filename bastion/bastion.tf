@@ -11,11 +11,10 @@ resource "azurerm_bastion_host" "host_bastion" {
     location            = var.location
     resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
     sku                 = "Basic"
-    #tunneling_enabled   = true
 
     ip_configuration {
         name                 = "vm_ip_configuration"
-        subnet_id            = data.terraform_remote_state.network.outputs.subnet_bastion
+        subnet_id            = azurerm_subnet.bastion.id
         public_ip_address_id = azurerm_public_ip.pip_bastion.id
     }
 }

@@ -1,7 +1,7 @@
 resource "azurerm_subnet" "bastion" {
     name                 = "AzureBastionSubnet"
     resource_group_name  = data.terraform_remote_state.rg.outputs.resource_group
-    virtual_network_name = azurerm_virtual_network.virtualNetwork.name
+    virtual_network_name = data.terraform_remote_state.network.outputs.virtual_network
     address_prefixes     = var.bastion_address
 }
 

@@ -1,3 +1,8 @@
+output "virtual_network" {
+  value       = azurerm_virtual_network.virtualNetwork.name
+  description = ""
+}
+
 output "subnet_public" {
   value       = azurerm_subnet.public.id
   description = ""
@@ -15,15 +20,5 @@ output "subnet_private" {
 
 output "network_security_group_private" {
   value       = azurerm_network_security_group.private.name
-  description = ""
-}
-
-output "subnet_bastion" {
-  value       = azurerm_subnet.bastion.id
-  description = ""
-}
-
-output "network_security_group_bastion" {
-  value       = azurerm_network_security_group.bastion.name
   description = ""
 }
