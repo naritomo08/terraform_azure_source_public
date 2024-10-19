@@ -9,13 +9,13 @@ data "terraform_remote_state" "rg" {
   }
 }
 
-data "terraform_remote_state" "bastion-network" {
+data "terraform_remote_state" "network" {
   backend = "azurerm"
 
   config = {
     resource_group_name  = "tfstate"
     storage_account_name = "tfstateilswl"
     container_name       = "tfstate"
-    key                  = "bastion-network.tfstate"
+    key                  = "network.tfstate"
   }
 }

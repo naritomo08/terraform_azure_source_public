@@ -1,4 +1,4 @@
-# terraform_azure_source_public
+# terraform_azure_source
 
 ## 立ち上げ概要
 
@@ -57,8 +57,7 @@ cd ..
 
 ```bash
 az login
-export ARM_ACCESS_KEY=$(az storage account keys list --resource-group tfstate --acc
-ount-name <ストレージアカウント名> --query '[0].value' -o tsv)
+export ARM_ACCESS_KEY=$(az storage account keys list --resource-group tfstate --account-name <ストレージアカウント名> --query '[0].value' -o tsv)
 →新しくターミナルを立ち上げるたびに設定すること。
 ```
 
@@ -143,6 +142,19 @@ admin_password
 ## 作成（bastion作成）8分かかる
 
 bastionフォルダ内へ入り、リソース作成を実施する。
+
+```bash
+cd bastion-network
+
+vi backend.tf
+
+<ストレージ名>を保存ストレージ作成で控えた名前をいれる。
+
+terraform init
+terraform plan
+terraform apply
+cd ..
+```
 
 ```bash
 cd bastion

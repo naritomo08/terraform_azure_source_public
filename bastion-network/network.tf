@@ -13,13 +13,6 @@ resource "azurerm_network_security_group" "bastion" {
     resource_group_name = data.terraform_remote_state.rg.outputs.resource_group
 }
 
-# BastionSubnetとNSGの関連付け
-
-resource "azurerm_subnet_network_security_group_association" "bastion" {
-    subnet_id                 = azurerm_subnet.bastion.id
-    network_security_group_id = azurerm_network_security_group.bastion.id
-}
-
 # azurerm_network_security_rule(Bastion RDP Accept)
 resource "azurerm_network_security_rule" "BastionGateway" {
     name                       = "AllowGatewayInBound"
@@ -75,4 +68,11 @@ resource "azurerm_network_security_rule" "BastionCloud" {
     destination_address_prefix = "AzureCloud"
     resource_group_name         = data.terraform_remote_state.rg.outputs.resource_group
     network_security_group_name = azurerm_network_security_group.bastion.name
+}
+
+# BastionSubnetとNSGの関連付け
+
+resource "azurerm_subnet_network_security_group_association" "bastion" {
+    subnet_id                 = azurerm_subnet.bastion.id
+    network_security_group_id = azurerm_network_security_group.bastion.id
 }
