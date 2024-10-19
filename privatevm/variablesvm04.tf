@@ -6,13 +6,7 @@ variable "vm04-vmname" {
 
 variable "vm04-network_interface_name" {
   type        = string
-  default     = "vm04-public"
-  description = ""
-}
-
-variable "vm04-publicip" {
-  type        = string
-  default     = "vm04-publicip"
+  default     = "vm04-private"
   description = ""
 }
 

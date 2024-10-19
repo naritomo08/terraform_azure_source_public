@@ -6,13 +6,7 @@ variable "vm03-vmname" {
 
 variable "vm03-network_interface_name" {
   type        = string
-  default     = "vm03-public"
-  description = ""
-}
-
-variable "vm03-publicip" {
-  type        = string
-  default     = "vm03-publicip"
+  default     = "vm03-private"
   description = ""
 }
 
@@ -39,4 +33,3 @@ variable "vm03-password" {
   default     = "Password1234!"
   description = ""
 }
-
