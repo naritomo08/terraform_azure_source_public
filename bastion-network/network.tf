@@ -75,4 +75,8 @@ resource "azurerm_network_security_rule" "BastionCloud" {
 resource "azurerm_subnet_network_security_group_association" "bastion" {
     subnet_id                 = azurerm_subnet.bastion.id
     network_security_group_id = azurerm_network_security_group.bastion.id
+    depends_on = [
+        azurerm_subnet.bastion,
+        azurerm_network_security_group.bastion,
+    ]
 }
